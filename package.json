@@ -18,7 +18,8 @@
     "test": "jest",
     "watch": "jest --watch",
     "snapupdate": "jest --updateSnapshot",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "cli": "node bin/dontscovery"
   },
   "files": [
     "tsconfig.json",
