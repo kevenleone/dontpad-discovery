@@ -1,4 +1,4 @@
-import { http, filesystem } from 'gluegun'
+import { http, filesystem, print } from 'gluegun'
 const baseURL = 'http://dontpad.com'
 const api = http.create({ baseURL });
 
@@ -31,25 +31,34 @@ const fetchBody = async (user) => {
 
 export const getUserData = async (user) => {
   const promises = [];
-    const promisesFiles = [];
-    let repos = [];
-    const menus = await fetchMenu(user);
+  const promisesFiles = [];
+  let i = 0;
+  let repos = [user];
 
-    await runFolder(repos, menus, user);
-    
-    for (const repo of repos) {
-      promises.push(fetchBody(repo));
+  let spin = print.spin(`Fetching repositories of ${user}`);
+  
+  const menus = await fetchMenu(user);
+  spin.stopAndPersist();
+  spin = print.spin(`Fetching repositories data of ${user}`);
+  await runFolder(repos, menus, user);
+  spin.stopAndPersist();
+
+  print.divider();
+
+  print.success(`Found ${repos.length} files of ${user}`);
+  
+  for (const repo of repos) {
+    promises.push(fetchBody(repo));
+  }
+  print.newline();
+  const promisesData = await Promise.all(promises);
+  for (const userData of promisesData) {
+    if (userData) {
+      const file = repos[i];
+      print.warning(`Creating file ${file}.txt`);
+      promisesFiles.push(filesystem.writeAsync(`data/${file}.txt`, userData));
     }
-
-    const promisesData = await Promise.all(promises);
-    let i = 0;
-    for (const userData of promisesData) {
-      if (userData) {
-        promisesFiles.push(filesystem.writeAsync(`data/${repos[i]}.txt`, userData));
-      }
-      i++;
-    }
-
-    await Promise.all(promisesFiles);
-    console.log({repos});
+    i++;
+  }
+  await Promise.all(promisesFiles);
 }

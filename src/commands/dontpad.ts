@@ -7,6 +7,6 @@ export = {
     const [user] = first.split(',');
 
     await getUserData(user);
-    print.success('Oi!')
+    print.info('End of process');
   }
 }
