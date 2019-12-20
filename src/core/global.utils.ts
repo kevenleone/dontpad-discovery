@@ -32,9 +32,9 @@ const fetchBody = async (user) => {
 export const getUserData = async (user) => {
   const promises = [];
   const promisesFiles = [];
+
   let i = 0;
   let repos = [user];
-
   let spin = print.spin(`Fetching repositories of ${user}`);
   
   const menus = await fetchMenu(user);
@@ -51,14 +51,18 @@ export const getUserData = async (user) => {
     promises.push(fetchBody(repo));
   }
   print.newline();
+
   const promisesData = await Promise.all(promises);
   for (const userData of promisesData) {
+    const file = repos[i];
     if (userData) {
-      const file = repos[i];
       print.warning(`Creating file ${file}.txt`);
       promisesFiles.push(filesystem.writeAsync(`data/${file}.txt`, userData));
+    } else {
+      print.error(`File ${file} not wrote, because it's empty`);
     }
     i++;
   }
   await Promise.all(promisesFiles);
+  print.newline();
 }
