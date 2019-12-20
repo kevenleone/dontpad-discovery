@@ -1,13 +1,17 @@
-import { getUserData } from '../core/global.utils'
+import { getUserData, welcome, printTimestamp } from '../core/global.utils'
 export = {
   name: 'dontpad:get',
   run: async toolbox => {
-    const { print, parameters } = toolbox;
+    const { parameters } = toolbox;
     const { first } = parameters;
-    const [user] = first.split(',');
-    if (user) {
+    welcome();
+    if (first) {
+      const [user] = first.split(',');
       await getUserData(user);
+    } else {
+      printTimestamp('Hey, an error ocurred.', 'warning');
+      printTimestamp('You need to pass an argument, example: dontscovery dontpad:get keven', 'error');
     }
-    print.info('End of process');
+    printTimestamp('End of process');
   }
 }

@@ -2,6 +2,24 @@ import { http, filesystem, print } from 'gluegun'
 const baseURL = 'http://dontpad.com'
 const api = http.create({ baseURL });
 
+export function printTimestamp(message, color = "info") {
+  const now = new Date().toISOString();
+  const msg = `${now} - ${message}`;
+  const colors = {
+    success: () => print.success(msg),
+    warning: () => print.warning(msg),
+    debug: () => print.debug(msg),
+    error: () => print.error(msg),
+    info: () => print.info(msg),
+  }
+
+  if (colors[color]) {
+    colors[color]();
+  } else {
+    print.info(message);
+  }
+}
+
 const fetchMenu = async (_user) => {
   const { ok, data } = await api.get(`${_user}.menu.json?_=0`);
   if (ok && data) {
@@ -29,7 +47,8 @@ const fetchBody = async (user) => {
   }
 }
 
-export const getUserData = async (user) => {
+export const getUserData = async (usr) => {
+  const user = usr.trim();
   const promises = [];
   const promisesFiles = [];
 
@@ -45,7 +64,7 @@ export const getUserData = async (user) => {
 
   print.divider();
 
-  print.success(`Found ${repos.length} files of ${user}`);
+  printTimestamp(`Found ${repos.length} files of ${user}`, 'success');
   
   for (const repo of repos) {
     promises.push(fetchBody(repo));
@@ -56,13 +75,18 @@ export const getUserData = async (user) => {
   for (const userData of promisesData) {
     const file = repos[i];
     if (userData) {
-      print.warning(`Creating file ${file}.txt`);
+      printTimestamp(`Creating file ${file}.txt`, 'warning');
       promisesFiles.push(filesystem.writeAsync(`data/${file}.txt`, userData));
     } else {
-      print.error(`File ${file} not wrote, because it's empty`);
+      printTimestamp(`File ${file} not wrote, because it's empty`, 'error');
     }
     i++;
   }
   await Promise.all(promisesFiles);
   print.newline();
+}
+
+export const welcome = () => {
+  printTimestamp('Welcome to dontscovery, starting to process');
+  print.divider();
 }

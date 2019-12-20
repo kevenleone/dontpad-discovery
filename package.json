@@ -1,8 +1,8 @@
 {
   "name": "dontscovery",
-  "version": "1.0.1",
-  "description": "dontscovery CLI",
-  "private": true,
+  "version": "1.0.2",
+  "description": "dontpad discovery CLI",
+  "private": false,
   "types": "build/types/types.d.ts",
   "bin": {
     "dontscovery": "bin/dontscovery"
