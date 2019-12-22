@@ -1,25 +1,43 @@
-# dontscovery CLI
+### Dontpad-Discovery - dontscovery
+    
+<p align="center"> A dontpad discovery folders and download content built with gluegun. </p>
 
-A CLI for dontscovery.
+<p align="center">
+  <a href="http://makeapullrequest.com">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome">
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License MIT">
+  </a>
+</p>
 
-## Customizing your CLI
+## :bulb: Introduction 
 
-Check out the documentation at https://github.com/infinitered/gluegun/tree/master/docs.
+dontpad is a simple CLI tool to get easily one or many files inside a folder and subfolders, that would be saved in a txt file.
 
-## Publishing to NPM
+**Note**: *This is a unofficial dontpad tool, and was made for study purpose.*
 
-To package your CLI up for NPM, do this:
+## :house: Getting started
 
-```shell
-$ npm login
-$ npm whoami
-$ npm lint
-$ npm test
-(if typescript, run `npm run build` here)
-$ npm publish
-```
+1. Install the package using NPM/YARN with -> npm -i dontscovery -g or yarn add global dontscovery
+2. Check the commands available with dontscovery -h
+3. Run the commands you want.
 
-# License
+## :zap: Commands
+- `dontscovery` - Basically is a welcome message, to know if installation worked well.
+- `dontscovery -h` - Will list all available commands and related descriptions.
+- `dontscovery:get` - Used to get **one** user content, `dontscovery:get keven`
+- `dontscovery:many` - Used to get one or many users content `dontscovery:many keven,leone,santos`, this process will find and download content of specified users, sepated by comma **,**
+- `dontscovery-random` - Get a random and brazilian user. Also is possible to specify how many randoms you want, like: `dontscovery-random 10`
 
-MIT - see LICENSE
+## :handshake: **Contributing**
+If you liked the project and want to cooperate feel free to fork this repository and send Pull Requests.
 
+All kinds of contributions are very welcome and appreciated
+
+-   ⭐️ Star the project
+-   🐛 Find and report issues
+-   📥 Submit PRs to help solve issues or add features
+
+## :book: License
+MIT license, Copyright (c) 2019 Keven Leone.
