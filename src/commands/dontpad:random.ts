@@ -1,13 +1,23 @@
+import { GluegunToolbox } from 'gluegun'
 import { getUserData, printTimestamp, welcome } from '../core/global.utils'
 import { name } from 'faker/locale/pt_BR'
-export = {
+
+async function generateUser(): Promise<void> {
+  const user = name.firstName()
+  await getUserData(user.toLowerCase())
+  printTimestamp(`Faker user generated ${user}`)
+}
+
+export default {
   name: 'dontpad:random',
-  run: async _toolbox => {
-    const user = name.firstName();
-    welcome();
-    printTimestamp(`Faker user generated ${user} and will try search for ${user} and ${user.toLowerCase()}`)
-    await getUserData(user);
-    await getUserData(user.toLowerCase());
-    printTimestamp('End of process');
+  run: async (toolbox: GluegunToolbox): Promise<void> => {
+    welcome()
+    const { first } = toolbox.parameters
+    const total = first && Number(first) ? first : 1
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    for (const _ of Array(total)) {
+      await generateUser()
+    }
+    printTimestamp('End of process')
   }
 }

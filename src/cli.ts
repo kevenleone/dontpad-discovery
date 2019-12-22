@@ -1,9 +1,8 @@
-const { build } = require('gluegun')
-
+import { build, GluegunToolbox } from 'gluegun'
 /**
  * Create the cli and kick it off
  */
-async function run(argv) {
+async function run(argv): Promise<GluegunToolbox> {
   // create a CLI runtime
   const cli = build()
     .brand('dontscovery')
