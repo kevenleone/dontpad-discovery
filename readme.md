@@ -13,7 +13,7 @@
 
 ## :bulb: Introduction 
 
-dontpad is a simple CLI tool to get easily one or many files inside a folder and subfolders, that would be saved in a txt file.
+dontscovery is a simple CLI tool to get easily one or many files inside a folder and subfolders, that would be saved in a txt file.
 
 How it works: use one of commands listed bellow, after processed will create a folder **data** with all files inside, even if exists many subdirectories dontscovery is capable to find and get all the data nested, as you can see in this awesome example.
 
@@ -23,10 +23,10 @@ How it works: use one of commands listed bellow, after processed will create a f
 
 ## :house: Getting started
 
-1. Install the package using NPM/YARN with -> npm -i dontscovery -g or yarn add global dontscovery
-2. Check the commands available with dontscovery -h
+1. Install the package using NPM/YARN with `npm -i dontscovery -g` or `yarn add global dontscovery`
+2. Check the commands available with `dontscovery -h`
 3. Run the commands you want.
-4. After run some of commands bellow, will create a folder 
+4. After run some of commands bellow, will create a folder.
 
 ## :zap: Commands
 - `dontscovery` - Basically is a welcome message, to know if installation worked well.
