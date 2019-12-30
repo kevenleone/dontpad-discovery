@@ -1,6 +1,6 @@
 {
   "name": "dontscovery",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "dontpad discovery CLI",
   "repository": "https://github.com/kevenleone/dontpad-discovery.git",
   "private": false,
