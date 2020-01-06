@@ -10,6 +10,7 @@ async function generateUser(): Promise<void> {
 
 export default {
   name: 'dontpad:random',
+  alias: 'random',
   run: async (toolbox: GluegunToolbox): Promise<void> => {
     welcome()
     const { first } = toolbox.parameters

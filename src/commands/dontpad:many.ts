@@ -3,6 +3,7 @@ import { getUserData, printTimestamp, welcome } from '../core/global.utils'
 
 export default {
   name: 'dontpad:many',
+  alias: 'many',
   run: async (toolbox: GluegunToolbox): Promise<void> => {
     const { print, parameters } = toolbox
     const { first } = parameters
