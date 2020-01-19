@@ -1,4 +1,7 @@
 ### Dontpad-Discovery - dontscovery
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/kevenleone/dontpad-discovery.svg)](https://greenkeeper.io/)
+
     
 <p align="center"> A dontpad discovery folders and download content built with gluegun. </p>
 
