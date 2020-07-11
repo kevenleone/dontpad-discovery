@@ -60,5 +60,8 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
